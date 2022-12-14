@@ -4,15 +4,21 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <AssemblyName>GameNetworkingSockets</AssemblyName>
+        <RootNamespace>Valve.Sockets</RootNamespace>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <DefineConstants>VALVESOCKETS_SPAN</DefineConstants>
+      <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <DefineConstants>VALVESOCKETS_SPAN</DefineConstants>
     </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Valve.Sockets.SourceGen\Valve.Sockets.SourceGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
 
 </Project>
