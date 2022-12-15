@@ -9,22 +9,27 @@ namespace Valve.Sockets;
 internal static partial class Native {
     private const string NativeLibrary = "GameNetworkingSockets";
 
-    [LibraryImport(NativeLibrary)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    internal static partial bool GameNetworkingSockets_Init(IntPtr identity, [MarshalAs(UnmanagedType.LPStr)] string errorMessage);
+    // Source: include/steam/steamnetworkingsockets.h
+    // High level interface to GameNetworkingSockets library.
 
     [LibraryImport(NativeLibrary)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    internal static partial bool GameNetworkingSockets_Init(ref Identity identity, [MarshalAs(UnmanagedType.LPStr)] string errorMessage);
+    internal static partial bool GameNetworkingSockets_Init(IntPtr identity, [MarshalAs(UnmanagedType.LPStr)] out string errorMessage);
+
+    [LibraryImport(NativeLibrary)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    internal static partial bool GameNetworkingSockets_Init(in Identity identity, [MarshalAs(UnmanagedType.LPStr)] out string errorMessage);
 
     [LibraryImport(NativeLibrary)]
     internal static partial void GameNetworkingSockets_Kill();
 
-    [LibraryImport(NativeLibrary)]
-    internal static partial IntPtr SteamAPI_SteamNetworkingSockets_v009();
+    // --------------------------------------------------------------------------------
+
+    // ISteamNetworkingSockets
+    // Source: include/steam/steamnetworkingsockets_flat.h
 
     [LibraryImport(NativeLibrary)]
-    internal static partial IntPtr SteamAPI_SteamNetworkingUtils_v003();
+    internal static partial IntPtr SteamAPI_SteamNetworkingSockets_v009();
 
     [LibraryImport(NativeLibrary)]
     internal static partial uint SteamAPI_ISteamNetworkingSockets_CreateListenSocketIP(IntPtr sockets, ref Address address, int configurationsCount, IntPtr configurations);
@@ -81,7 +86,7 @@ internal static partial class Native {
 
     [LibraryImport(NativeLibrary)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    internal static partial bool SteamAPI_ISteamNetworkingSockets_GetQuickConnectionStatus(IntPtr sockets, uint connection, ref Status status);
+    internal static partial bool SteamAPI_ISteamNetworkingSockets_GetConnectionRealTimeStatus(IntPtr sockets, uint connection, ref Status status);
 
     [LibraryImport(NativeLibrary)]
     internal static partial int SteamAPI_ISteamNetworkingSockets_GetDetailedConnectionStatus(IntPtr sockets, uint connection, [MarshalAs(UnmanagedType.LPStr)] string status, int statusLength);
@@ -115,6 +120,11 @@ internal static partial class Native {
     [LibraryImport(NativeLibrary)]
     internal static partial int SteamAPI_ISteamNetworkingSockets_ReceiveMessagesOnPollGroup(IntPtr sockets, uint pollGroup, IntPtr[] messages, int maxMessages);
 
+    // --------------------------------------------------------------------------------
+
+    // SteamNetworkingIPAddr
+    // Source: include/steam/steamnetworkingsockets_flat.h
+
     [LibraryImport(NativeLibrary)]
     internal static partial void SteamAPI_SteamNetworkingIPAddr_SetIPv6(ref Address address, byte[] ip, ushort port);
 
@@ -135,6 +145,11 @@ internal static partial class Native {
     [return: MarshalAs(UnmanagedType.Bool)]
     internal static partial bool SteamAPI_SteamNetworkingIPAddr_IsEqualTo(ref Address address, ref Address other);
 
+    // --------------------------------------------------------------------------------
+
+    // SteamNetworkingIdentity
+    // Source: include/steam/steamnetworkingsockets_flat.h
+
     [LibraryImport(NativeLibrary)]
     [return: MarshalAs(UnmanagedType.Bool)]
     internal static partial bool SteamAPI_SteamNetworkingIdentity_IsInvalid(ref Identity identity);
@@ -144,6 +159,14 @@ internal static partial class Native {
 
     [LibraryImport(NativeLibrary)]
     internal static partial ulong SteamAPI_SteamNetworkingIdentity_GetSteamID64(ref Identity identity);
+
+    // --------------------------------------------------------------------------------
+
+    // ISteamNetworkingUtils
+    // Source: include/steam/steamnetworkingsockets_flat.h
+
+    [LibraryImport(NativeLibrary)]
+    internal static partial IntPtr SteamAPI_SteamNetworkingUtils_v003();
 
     [LibraryImport(NativeLibrary)]
     internal static partial long SteamAPI_ISteamNetworkingUtils_GetLocalTimestamp(IntPtr utils);
@@ -175,6 +198,11 @@ internal static partial class Native {
 
     [LibraryImport(NativeLibrary)]
     internal static partial Value SteamAPI_ISteamNetworkingUtils_GetFirstConfigValue(IntPtr utils);
+
+    // --------------------------------------------------------------------------------
+
+    // SteamNetworkingMessage_t
+    // Source: include/steam/steamnetworkingsockets_flat.h
 
     [LibraryImport(NativeLibrary)]
     internal static partial void SteamAPI_SteamNetworkingMessage_t_Release(IntPtr nativeMessage);

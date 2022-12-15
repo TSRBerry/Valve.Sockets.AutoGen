@@ -19,17 +19,8 @@ public struct Message {
 
     public void CopyTo(byte[] destination) {
         if (destination == null)
-            throw new ArgumentNullException("destination");
+            throw new ArgumentNullException(nameof(destination));
 
         Marshal.Copy(data, destination, 0, length);
     }
-
-#if !VALVESOCKETS_SPAN
-    public void Destroy() {
-        if (release == IntPtr.Zero)
-            throw new InvalidOperationException("Message not created");
-
-        Native.SteamAPI_SteamNetworkingMessage_t_Release(release);
-    }
-#endif
 }

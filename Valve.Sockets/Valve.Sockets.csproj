@@ -9,12 +9,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DefineConstants>VALVESOCKETS_SPAN</DefineConstants>
       <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DefineConstants>VALVESOCKETS_SPAN</DefineConstants>
     </PropertyGroup>
 
     <PropertyGroup>

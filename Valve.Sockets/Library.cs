@@ -9,23 +9,27 @@ public static class Library {
     public const int maxMessageSize = 512 * 1024;
     public const int socketsCallbacks = 1220;
 
-    public static bool Initialize(string errorMessage = null) {
-        if (errorMessage != null && errorMessage.Length > maxErrorMessageLength)
-            throw new ArgumentOutOfRangeException("Length of the error message must be smaller or equal to " + maxErrorMessageLength);
 
-        return Native.GameNetworkingSockets_Init(IntPtr.Zero, errorMessage);
+    // Initialize the library.  Optionally, you can set an initial identity for the default
+    // interface that is returned by SteamNetworkingSockets().
+    //
+    // On failure, false is returned, and a non-localized diagnostic message is returned.
+    public static bool Initialize(out string errorMessage) {
+        return Native.GameNetworkingSockets_Init(IntPtr.Zero, out errorMessage);
     }
 
-    public static bool Initialize(ref Identity identity, string errorMessage) {
-        if (errorMessage != null && errorMessage.Length > maxErrorMessageLength)
-            throw new ArgumentOutOfRangeException("Length of the error message must be smaller or equal to " + maxErrorMessageLength);
-
+    // Initialize the library.  Optionally, you can set an initial identity for the default
+    // interface that is returned by SteamNetworkingSockets().
+    //
+    // On failure, false is returned, and a non-localized diagnostic message is returned.
+    public static bool Initialize(Identity identity, out string errorMessage) {
         if (Equals(identity, null))
-            throw new ArgumentNullException("identity");
+            throw new ArgumentNullException(nameof(identity));
 
-        return Native.GameNetworkingSockets_Init(ref identity, errorMessage);
+        return Native.GameNetworkingSockets_Init(identity, out errorMessage);
     }
 
+    // Close all connections and listen sockets and free all resources
     public static void Deinitialize() {
         Native.GameNetworkingSockets_Kill();
     }
