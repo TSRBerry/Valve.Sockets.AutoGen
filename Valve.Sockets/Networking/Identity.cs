@@ -3,9 +3,8 @@ using Valve.Sockets.Types;
 
 namespace Valve.Sockets.Networking;
 
-[StructLayout(LayoutKind.Explicit, Size = 136)]
+[StructLayout(LayoutKind.Sequential, Size = 136)]
 public struct Identity {
-    [FieldOffset(0)]
     public IdentityType type;
 
     public bool IsInvalid => Native.SteamAPI_SteamNetworkingIdentity_IsInvalid(ref this);

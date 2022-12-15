@@ -30,8 +30,8 @@ public static class Extensions {
         return address.GetAddressBytes();
     }
 
-    public static string ParseIP(this byte[] ip) {
-        IPAddress address = new IPAddress(ip);
+    public static string ParseIP(this Array16<byte> ip) {
+        IPAddress address = new IPAddress(ip.AsSpan());
         string converted = address.ToString();
 
         if (converted.Length > 7 && converted.Remove(7) == "::ffff:") {

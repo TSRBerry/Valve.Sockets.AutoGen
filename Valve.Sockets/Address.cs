@@ -26,13 +26,13 @@ using System.Runtime.InteropServices;
 namespace Valve.Sockets {
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Address : IEquatable<Address> {
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
-		public byte[] IP;
+        public Array16<byte> IP;
 		public ushort Port;
 
-		public bool IsLocalHost => Native.SteamAPI_SteamNetworkingIPAddr_IsLocalHost(ref this);
+        public bool IsLocalHost => Native.SteamAPI_SteamNetworkingIPAddr_IsLocalHost(ref this);
 
-		public string GetIP() {
+		public string GetIP()
+        {
 			return IP.ParseIP();
 		}
 
@@ -48,7 +48,7 @@ namespace Valve.Sockets {
 		}
 
 		public bool Equals(Address other) {
-			return Native.SteamAPI_SteamNetworkingIPAddr_IsEqualTo(ref this, ref other);
-		}
+            return Native.SteamAPI_SteamNetworkingIPAddr_IsEqualTo(ref this, ref other);
+        }
 	}
 }

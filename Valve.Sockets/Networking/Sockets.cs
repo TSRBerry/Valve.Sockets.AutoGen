@@ -1,5 +1,4 @@
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Text;
 using Valve.Sockets.Types;
 using Valve.Sockets.Types.Configuration;
@@ -70,7 +69,7 @@ public class Sockets {
         Native.SteamAPI_ISteamNetworkingSockets_SetConnectionName(nativeSockets, peer, name);
     }
 
-    public bool GetConnectionName(uint peer, StringBuilder name, int maxLength) {
+    public bool GetConnectionName(uint peer, string name, int maxLength) {
         return Native.SteamAPI_ISteamNetworkingSockets_GetConnectionName(nativeSockets, peer, name, maxLength);
     }
 
@@ -119,7 +118,7 @@ public class Sockets {
         return Native.SteamAPI_ISteamNetworkingSockets_GetQuickConnectionStatus(nativeSockets, connection, ref status);
     }
 
-    public int GetDetailedConnectionStatus(uint connection, StringBuilder status, int statusLength) {
+    public int GetDetailedConnectionStatus(uint connection, string status, int statusLength) {
         return Native.SteamAPI_ISteamNetworkingSockets_GetDetailedConnectionStatus(nativeSockets, connection, status, statusLength);
     }
 

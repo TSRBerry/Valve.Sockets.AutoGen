@@ -17,6 +17,5 @@ public struct Status {
     public int pendingReliable;
     public int sentUnackedReliable;
     public long queueTime;
-    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
-    private uint[] reserved;
+    private Array16<uint> reserved;
 }

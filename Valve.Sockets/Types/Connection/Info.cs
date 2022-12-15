@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Text;
 using Valve.Sockets.Networking;
 
 namespace Valve.Sockets.Types.Connection;
@@ -14,10 +15,10 @@ public struct Info {
     private uint popRelay;
     public State state;
     public int endReason;
-    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-    public string endDebug;
-    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-    public string connectionDescription;
-    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
-    private uint[] reserved;
+    private Array128<byte> _endDebug;
+    private Array128<byte> _connectionDescription;
+    private Array64<uint> reserved;
+
+    public string endDebug => Encoding.Default.GetString(_endDebug.AsSpan());
+    public string connectionDescription => Encoding.Default.GetString(_connectionDescription.AsSpan());
 }
