@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <!-- Defining all sources files as input parameter -->
+    <ItemGroup>
+        <ProjectFiles Include="$(MSBuildProjectDirectory)\**\*.cs" />
+    </ItemGroup>
+
+    <!--A target that generates code, which is executed before the compilation-->
+    <Target Name="BeforeCompile" Inputs="@(ProjectFiles)" Outputs="$(ArrayOutputPath)\Arrays.g.cs">
+        <Message Importance="High" Text="Executing custom task from: $(CustomTasksAssembly)"/>
+        <!--Calling our custom task-->
+        <GenerateArrays ArrayNamespace="$(ArrayNamespace)" InputFiles="@(ProjectFiles)" OutputPath="$(ArrayOutputPath)">
+            <Output TaskParameter="OutputFiles" PropertyName="ArrayOutputFiles" />
+        </GenerateArrays>
+        <!--Our generated file is included to be compiled-->
+        <ItemGroup>
+            <Compile Remove="@(ArrayOutputFiles)" />
+            <Compile Include="@(ArrayOutputFiles)" />
+        </ItemGroup>
+        <Message Importance="High" Text="Task completed."/>
+    </Target>
+
+    <!--The generated file is deleted after a general clean. It will force the regeneration on rebuild-->
+    <Target Name="AfterClean">
+        <Delete Files="$(ArrayOutputPath)\*.g.cs" />
+    </Target>
+</Project>

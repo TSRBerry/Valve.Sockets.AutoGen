@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Valve.Sockets.SourceGen.Helper
+namespace Valve.Sockets.Tasks.Helper
 {
     // Source: https://github.com/Ryujinx/Ryujinx/blob/df758eddd1d61f776415422dc4dd1fa8a776719c/Ryujinx.Horizon.Generators/CodeGenerator.cs
 
