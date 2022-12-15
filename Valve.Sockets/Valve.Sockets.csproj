@@ -17,8 +17,14 @@
       <DefineConstants>VALVESOCKETS_SPAN</DefineConstants>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <ArrayNamespace>Valve.Sockets</ArrayNamespace>
+        <ArrayOutputPath>$(MSBuildProjectDirectory)\Generated</ArrayOutputPath>
+    </PropertyGroup>
+
     <ItemGroup>
-        <ProjectReference Include="..\Valve.Sockets.SourceGen\Valve.Sockets.SourceGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+<!--        <ProjectReference Include="..\Valve.Sockets.SourceGen\Valve.Sockets.SourceGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />-->
+        <PackageReference Include="Valve.Sockets.Tasks" Version="1.0.0" PrivateAssets="all" />
     </ItemGroup>
 
 </Project>
