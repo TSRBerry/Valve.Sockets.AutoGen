@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Valve.Sockets", "Valve.Sock
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Valve.Sockets.SourceGen", "Valve.Sockets.SourceGen\Valve.Sockets.SourceGen.csproj", "{0FC6343A-7733-460F-8110-96663E33E8E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Valve.Sockets.Tasks", "Valve.Sockets.Tasks\Valve.Sockets.Tasks.csproj", "{10A3E112-CE45-428E-B65B-7C544401C6F5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +24,5 @@ Global
 		{0FC6343A-7733-460F-8110-96663E33E8E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FC6343A-7733-460F-8110-96663E33E8E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FC6343A-7733-460F-8110-96663E33E8E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10A3E112-CE45-428E-B65B-7C544401C6F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10A3E112-CE45-428E-B65B-7C544401C6F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10A3E112-CE45-428E-B65B-7C544401C6F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10A3E112-CE45-428E-B65B-7C544401C6F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

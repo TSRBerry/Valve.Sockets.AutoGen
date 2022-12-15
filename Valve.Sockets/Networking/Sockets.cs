@@ -1,5 +1,4 @@
 using System.Runtime.CompilerServices;
-using System.Text;
 using Valve.Sockets.Types;
 using Valve.Sockets.Types.Configuration;
 using Valve.Sockets.Types.Connection;
@@ -151,7 +150,7 @@ public class Sockets {
     }
 
 #if VALVESOCKETS_SPAN
-			[MethodImpl(256)]
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public void ReceiveMessagesOnConnection(uint connection, MessageCallback callback, int maxMessages) {
 				if (maxMessages > Library.maxMessagesPerBatch)
 					throw new ArgumentOutOfRangeException("maxMessages");
@@ -172,7 +171,7 @@ public class Sockets {
 				}
 			}
 
-			[MethodImpl(256)]
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public void ReceiveMessagesOnPollGroup(uint pollGroup, MessageCallback callback, int maxMessages) {
 				if (maxMessages > Library.maxMessagesPerBatch)
 					throw new ArgumentOutOfRangeException("maxMessages");
@@ -193,7 +192,7 @@ public class Sockets {
 				}
 			}
 #else
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int ReceiveMessagesOnConnection(uint connection, Message[] messages, int maxMessages) {
         if (messages == null)
             throw new ArgumentNullException("messages");
@@ -212,7 +211,7 @@ public class Sockets {
         return messagesCount;
     }
 
-    [MethodImpl(256)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int ReceiveMessagesOnPollGroup(uint pollGroup, Message[] messages, int maxMessages) {
         if (messages == null)
             throw new ArgumentNullException("messages");
